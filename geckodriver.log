@@ -7,3 +7,29 @@ console.warn: SearchSettings: "get: No settings file exists, new profile?" (new 
 JavaScript error: http://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/, line 614: ReferenceError: oscar is not defined
 1637222667431	Marionette	INFO	Stopped listening on port 43619
 JavaScript error: resource:///modules/Interactions.jsm, line 201: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+1637245352215	geckodriver	INFO	Listening on 127.0.0.1:54559
+1637245353228	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilet6ZS4y"
+1637245354339	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilet6ZS4y/search.json.mozlz4", (void 0)))
+1637245356045	Marionette	INFO	Listening on port 34661
+1637245356173	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://selenium1py.pythonanywhere.com/en-gb/, line 758: ReferenceError: oscar is not defined
+JavaScript error: http://selenium1py.pythonanywhere.com/en-gb/accounts/login/, line 624: ReferenceError: oscar is not defined
+1637245379893	Marionette	INFO	Stopped listening on port 34661
+JavaScript error: resource:///modules/Interactions.jsm, line 201: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1637245409950	geckodriver	INFO	Listening on 127.0.0.1:44267
+1637245409962	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileTMhMND"
+1637245410881	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileTMhMND/search.json.mozlz4", (void 0)))
+1637245412616	Marionette	INFO	Listening on port 36271
+1637245412696	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://selenium1py.pythonanywhere.com/es/, line 374: ReferenceError: oscar is not defined
+JavaScript error: http://selenium1py.pythonanywhere.com/es/accounts/login/, line 624: ReferenceError: oscar is not defined
+1637245431339	Marionette	INFO	Stopped listening on port 36271
+JavaScript error: resource:///modules/Interactions.jsm, line 201: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+

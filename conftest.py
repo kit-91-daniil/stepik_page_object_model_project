@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.options import Options
 
 
 def pytest_addoption(parser):
-    parser.addoption("--language", action="store", help="choose language: es or en or ru")
+    parser.addoption("--language", action="store", default="en", help="choose language: es or en or ru")
     parser.addoption("--browser_name",  action="store", default="chrome", help="Choose browser: chrome or firefox")
 
 
@@ -16,8 +16,8 @@ def browser(request):
     if browser_name == "chrome":
         print("\nstart chrome browser for test..")
         options = Options()
-        options.add_argument("lang=en-GB")
         options.add_experimental_option('prefs', {'intl.accept_languages': language})
+        browser = webdriver.Chrome(options=options)
     elif browser_name == "firefox":
         print("\nstart firefox browser for test..")
         fp = webdriver.FirefoxProfile()
@@ -28,21 +28,3 @@ def browser(request):
     yield browser
     print("\nquit browser..")
     browser.quit()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
