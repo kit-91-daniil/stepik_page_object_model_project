@@ -9,5 +9,4 @@ def test_user_should_see_basket_button(browser):
     browser.get(link)
     basket_button = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR,
                                                                                      "button.btn-add-to-basket")))
-    time.sleep(3)
     assert basket_button
