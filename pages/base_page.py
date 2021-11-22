@@ -12,37 +12,53 @@ class BasePage:
         self.url = url
         self.timeout = timeout
 
-    def open(self):
-        self.browser.get(self.url)
+    def do_click(self, how, what):
+        WebDriverWait(self.browser, timeout=4).until(EC.visibility_of_element_located((how, what))).click()
 
-    def go_to_login_page(self):
-        login_link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
-        login_link.click()
-
-    def should_be_login_link(self):
-        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not present"
-
-    def is_element_present(self, how, what):
-        try:
-            self.browser.find_element(how, what)
-        except:
-            return False
-        return True
-
-    def is_not_element_present(self, how, what, timeout=6):
-        try:
-            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
-        except TimeoutException:
-            return True
-        return False
-
-    def is_disappeared(self, how, what, timeout=4):
+    def is_element_disappeared(self, how, what, timeout=4):
         try:
             WebDriverWait(self.browser, timeout, 1, TimeoutException). \
                 until_not(EC.presence_of_element_located((how, what)))
         except TimeoutException:
             return False
         return True
+
+    def is_element_present(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
+        return True
+
+    def is_element_present_and_has_the_text(self, how, what, timeout=4):
+        try:
+            element = WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
+        result = element.text if hasattr(element, "text") else True
+        return result
+
+    def is_not_element_present(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return True
+        return False
+
+    def go_to_basket_page(self):
+        self.do_click(*BasePageLocators.BASKET_LINK)
+
+    def go_to_login_page(self):
+        self.do_click(*BasePageLocators.LOGIN_LINK)
+
+    def open(self):
+        self.browser.get(self.url)
+
+    def should_be_basket_link(self):
+        assert self.is_element_present(*BasePageLocators.BASKET_LINK), "Basket link is not present"
+
+    def should_be_login_link(self):
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not present"
 
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert

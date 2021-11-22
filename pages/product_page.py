@@ -30,8 +30,7 @@ class ProductPage(BasePage):
         ), "The add_to_basket button is not present on the product page"
 
     def should_be_solving_quiz_and_getting_code(self):
-        btn_add_to_basket = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
-        btn_add_to_basket.click()
+        self.do_click(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
         assert self.solve_quiz_and_get_code(), "Quiz wasn't solved"
 
     def should_add_product_to_basket_message_name_be_actual(self):
@@ -59,25 +58,21 @@ class ProductPage(BasePage):
             "Success message about basket total price increasing present"
 
     def should_not_be_success_message_name_after_adding_product_to_basket(self):
-        btn_add_to_basket = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
-        btn_add_to_basket.click()
+        self.do_click(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
         assert self.is_not_element_present(*ProductPageLocators.ADD_TO_BASKET_ALERT_PRODUCT_NAME), \
             "Success message about product adding to basket present"
 
     def should_not_be_success_message_price_after_adding_product_to_basket(self):
-        btn_add_to_basket = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
-        btn_add_to_basket.click()
+        self.do_click(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
         assert self.is_not_element_present(*ProductPageLocators.ADD_TO_BASKET_ALERT_PRODUCT_PRICE), \
             "Success message about basket total price increasing present"
 
     def should_success_message_with_name_disappeared_after_adding_product_to_basket(self):
-        btn_add_to_basket = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
-        btn_add_to_basket.click()
-        assert self.is_disappeared(*ProductPageLocators.ADD_TO_BASKET_ALERT_PRODUCT_NAME), \
+        self.do_click(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
+        assert self.is_element_disappeared(*ProductPageLocators.ADD_TO_BASKET_ALERT_PRODUCT_NAME), \
             "Success message with name after adding product to basket is disappeared"
 
     def should_success_message_with_price_disappeared_after_adding_product_to_basket(self):
-        btn_add_to_basket = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
-        btn_add_to_basket.click()
-        assert self.is_disappeared(*ProductPageLocators.ADD_TO_BASKET_ALERT_PRODUCT_PRICE), \
+        self.do_click(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
+        assert self.is_element_disappeared(*ProductPageLocators.ADD_TO_BASKET_ALERT_PRODUCT_PRICE), \
             "Success message with price after adding product to basket is not disappeared"

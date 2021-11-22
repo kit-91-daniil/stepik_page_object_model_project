@@ -3,10 +3,16 @@ from selenium.webdriver.common.by import By
 
 class BasePageLocators:
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    BASKET_LINK = (By.CSS_SELECTOR, ".basket-mini span a.btn-default.btn")
+
+
+class BasketPageLocators(BasePageLocators):
+    PRODUCTS_IN_BASKET = (By.CSS_SELECTOR, "#basket_formset")
+    EMPTY_BASKET_TEXT = (By.CSS_SELECTOR, "#content_inner>p")
 
 
 class MainPageLocators(BasePageLocators):
-    pass
+    MAIN_PAGE_URL = "http://selenium1py.pythonanywhere.com"
 
 
 class LoginPageLocators:
