@@ -12,8 +12,15 @@ class BasePage:
         self.url = url
         self.timeout = timeout
 
-    def do_click(self, how, what):
-        WebDriverWait(self.browser, timeout=4).until(EC.visibility_of_element_located((how, what))).click()
+    def do_click(self, how, what, timeout=4):
+        WebDriverWait(self.browser, timeout=timeout).until(EC.visibility_of_element_located((how, what))).click()
+
+    def find_element_expl_waiting(self, how, what, timeout=4):
+        try:
+            element = WebDriverWait(self.browser, timeout=timeout).until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
+        return element
 
     def is_element_disappeared(self, how, what, timeout=4):
         try:
@@ -53,6 +60,10 @@ class BasePage:
 
     def open(self):
         self.browser.get(self.url)
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented, " \
+                                                                     "probably unauthorized user"
 
     def should_be_basket_link(self):
         assert self.is_element_present(*BasePageLocators.BASKET_LINK), "Basket link is not present"

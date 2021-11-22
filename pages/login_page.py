@@ -1,8 +1,26 @@
+import time
 from .base_page import BasePage
-from .locators import LoginPageLocators
+from .main_page import MainPage
+from .locators import LoginPageLocators, MainPageLocators
 
 
 class LoginPage(BasePage):
+
+    def register_new_user(self):
+        email = str(time.time()) + "@fakemail.org"
+        password = "87rWiEtX8RdBqBu"
+        email_input = self.find_element_expl_waiting(*LoginPageLocators.REGISTER_FORM_EMAIL_INPUT)
+        password_input = self.find_element_expl_waiting(*LoginPageLocators.REGISTER_FORM_PASSWORD_INPUT)
+        password_input_repeat = self.find_element_expl_waiting(
+            *LoginPageLocators.REGISTER_FORM_PASSWORD_INPUT_REPEAT
+        )
+        email_input.send_keys(email)
+        password_input.send_keys(password)
+        password_input_repeat.send_keys(password)
+        self.do_click(*LoginPageLocators.REGISTER_FORM_SUBMIT_BUTTON)
+        self.is_element_present_and_has_the_text(*MainPageLocators.MAIN_PAGE_REGISTRATION_SUCCESS_MESSAGE)
+        self.should_be_authorized_user()
+
     def should_be_login_page(self):
         self.should_be_login_url()
         self.should_be_login_form()
